@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SNS - Add Note</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 650px;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            text-align: center;
+
+            color: #333;
+
+            margin-bottom: 10px;
+
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+
+            color: #777;
+
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+            color: #333;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #f8f9fa;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #667eea;
+
+            background: white;
+
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+        }
+
+        textarea {
+            min-height: 180px;
+
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        button,
+        .cancel {
+            flex: 1;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-align: center;
+
+            text-decoration: none;
+        }
+
+        .add-btn {
+            background: #667eea;
+
+            color: white;
+        }
+
+        .add-btn:hover {
+            background: #5568d8;
+        }
+
+        .cancel {
+            background: #eeeeee;
+
+            color: #333;
+        }
+
+        .cancel:hover {
+            background: #dddddd;
+        }
+
+        .message {
+            background: #e8f5e9;
+
+            color: #2e7d32;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            border-left: 5px solid #43a047;
+        }
+
+        @media (max-width: 600px) {
+
+            .card {
+                padding: 25px 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="card">
+
+        <h1>📝 Add Note</h1>
+
+        <p class="subtitle">
+            Create and save your personal note
+        </p>
+
+
+        <!-- Flash Messages -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+
+        <!-- Add Note Form -->
+
+        <form action="{{ url_for('addnote') }}" method="POST">
+
+
+            <div class="form-group">
+
+                <label for="title">
+                    Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter note title"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="content">
+                    Content
+                </label>
+
+                <textarea
+                    id="content"
+                    name="content"
+                    placeholder="Write your note here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="add-btn">
+                    ➕ Add Note
+                </button>
+
+
+                <a
+                    href="{{ url_for('mynotes') }}"
+                    class="cancel">
+                    Cancel
+                </a>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

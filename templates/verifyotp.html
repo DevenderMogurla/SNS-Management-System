@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+SNS - Verify OTP
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Verify OTP</h2>
+
+    <p>
+        Enter the OTP sent to your email.
+    </p>
+
+
+    <form action="/verifyotp" method="POST">
+
+        <label for="otp">
+            OTP
+        </label>
+
+        <input
+            type="number"
+            id="otp"
+            name="otp"
+            placeholder="Enter 4 digit OTP"
+            required
+        >
+
+
+        <button type="submit">
+            Verify OTP
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

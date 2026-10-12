@@ -1,0 +1,109 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}
+
+SNS - Login
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Flash Messages -->
+    <div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% for category, message in messages %}
+
+                {% if category == "msg" %}
+
+                    <div class="alert alert-success" style="color: green;">
+                        {{ message }}
+                    </div>
+
+                {% elif category == "err" %}
+
+                    <div class="alert alert-danger" style="color: red;">
+                        {{ message }}
+                    </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endwith %}
+
+    </div>
+
+
+    <!-- Login Heading -->
+    <h2>Login</h2>
+
+    <p>
+        Login to manage your notes and files.
+    </p>
+
+
+    <!-- Login Form -->
+    <form action="/login" method="POST">
+
+        <label for="email">
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+        >
+
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+        >
+
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+
+    <!-- Register Link -->
+    <p>
+        Don't have an account?
+
+        <a href="/register">
+            Register
+        </a>
+    </p>
+
+
+    <!-- Forgot Password -->
+    <p>
+        <a href="{{ url_for('forgot_password') }}">
+            Forgot Password?
+        </a>
+    </p>
+
+</div>
+
+
+{% endblock %}
+

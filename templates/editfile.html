@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit File - SNS</title>
+
+    <nav>
+
+    <a href="{{ url_for('dashboard') }}" class="logo">
+        SNS Management
+    </a>
+
+
+    <ul>
+
+        <li>
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('mynotes') }}">
+                Notes
+            </a>
+        </li>
+
+        <li>
+            <a href="/files">
+                Files
+            </a>
+        </li>
+
+        <li>
+            <a href="/profile">
+                Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('logout') }}" class="logout">
+    Logout
+</a>
+        </li>
+
+    </ul>
+
+</nav>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; }
+        .container { width: 90%; max-width: 600px; margin: 80px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { margin-top: 0; }
+        label { display: block; margin-top: 20px; margin-bottom: 8px; font-weight: bold; }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; }
+        button { margin-top: 20px; padding: 12px 20px; background: #222; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .back { display: inline-block; margin-top: 20px; text-decoration: none; color: #333; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Update File</h1>
+
+    <p>Current file: <strong>{{ file.originalname }}</strong></p>
+
+    <form method="POST" action="{{ url_for('editfile', file_id=file.fileid) }}">
+        <label>File Name</label>
+        <input type="text" name="filename" value="{{ file.originalname }}" required>
+        <button type="submit">Update &amp; Save</button>
+    </form>
+
+    <a class="back" href="{{ url_for('files') }}">&larr; Back to Files</a>
+</div>
+
+</body>
+</html>
